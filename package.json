@@ -1,0 +1,19 @@
+{
+  "name": "rpl-skandakra-bot",
+  "version": "1.0.0",
+  "description": "Bot for Help Moderation RPL Skandakra Dev Discord Server",
+  "main": "index.js",
+  "author": "rplskandakra",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
