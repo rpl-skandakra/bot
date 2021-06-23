@@ -1,6 +1,6 @@
 {
   "name": "RPL Skandakra Bot",
   "description": "Bot for Help Moderation RPL Skandakra Dev Discord Server.",
-  "prefix": "=>",
+  "prefix": "/>",
   "version": "1.0.0"
 }

@@ -1,9 +1,20 @@
 const Discord = require('discord.js');
 const dotenv = require('dotenv');
+const fs = require('fs');
 const { prefix } = require('./data/bot.json');
 
 dotenv.config();
 const client = new Discord.Client();
+const commands = new Discord.Collection();
+
+const files = fs
+  .readdirSync('./commands')
+  .filter((file) => file.endsWith('.js'));
+
+files.map((file) => {
+  const command = require(`./commands/${file}`);
+  commands.set(command.name, command);
+});
 
 client.on('ready', () => {
   console.log('Bot sudah siap!');
@@ -45,6 +56,9 @@ client.on('message', (message) => {
         break;
       case 'pong':
         message.channel.send('🏓 **Ping!**');
+        break;
+      case 'clear':
+        commands.get('clear').execute(message, text);
         break;
     }
   }
