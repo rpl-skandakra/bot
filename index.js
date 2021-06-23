@@ -47,19 +47,27 @@ client.on('guildMemberAdd', (member) => {
 });
 
 client.on('message', (message) => {
-  const text = message.content.substring(prefix.length).split(' ');
-
-  if (message.content.startsWith(prefix)) {
-    switch (text[0]) {
-      case 'ping':
-        message.channel.send('🏓 **Pong!**');
-        break;
-      case 'pong':
-        message.channel.send('🏓 **Ping!**');
-        break;
-      case 'clear':
-        commands.get('clear').execute(message, text);
-        break;
+  if (message.channel.id === process.env.CH_INTRO_ID && !message.author.bot) {
+    commands.get('intro').execute(message);
+  } else {
+    const text = message.content.substring(prefix.length).split(' ');
+    if (message.content.startsWith(prefix)) {
+      switch (text[0]) {
+        case 'ping':
+          message.channel.send('🏓 **Pong!**');
+          break;
+        case 'pong':
+          message.channel.send('🏓 **Ping!**');
+          break;
+        case 'clear':
+          commands.get('clear').execute(message, text);
+          break;
+        default:
+          message.channel.send(
+            `Commands tidak ditemukan! Silahkan ketik **${prefix}info\** untuk menampilkan list commands.`
+          );
+          break;
+      }
     }
   }
 });
