@@ -16,19 +16,17 @@ module.exports = {
     );
 
     if (!isMember) {
-      if (
-        /Nama :/.test(message.content) &&
-        /Kelas :/.test(message.content) &&
-        /Alamat :/.test(message.content) &&
-        /Hobi :/.test(message.content)
-      ) {
+      const regexPattern = new RegExp(
+        /(Nama)\s[:][\s\w]?\w{3,}\n(Kelas)\s[:][\s\w]?\w{1,}\n(Hobi)\s[:][\s\w]?\w{3,}/
+      );
+      if (regexPattern.test(message.content)) {
         user.roles.add(roleMember);
         message.reply(
           `Selamat kamu sudah resmi menjadi **${roleMember.name}** dari **${message.guild.name}**.\nJangan lupa pilih role terlebih dahulu di ${chRole}!`
         );
       } else {
         message.reply(
-          'Silahkan masukkan format perkenalan dengan benar!\n> Nama : \n> Kelas : \n> Alamat : \n> Hobi :'
+          'Silahkan masukkan format perkenalan dengan benar!\n**Contoh :**\n> Nama : Budi\n> Kelas : 11\n> Hobi : Memancing'
         );
       }
     } else {
