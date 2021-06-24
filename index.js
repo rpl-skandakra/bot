@@ -62,6 +62,9 @@ client.on('message', (message) => {
         case 'clear':
           commands.get('clear').execute(message, text);
           break;
+        case 'server':
+          commands.get('server').execute(message);
+          break;
         case 'info':
           commands.get('info').execute(message);
           break;

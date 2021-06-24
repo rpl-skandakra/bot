@@ -13,8 +13,9 @@ module.exports = {
         { name: 'pong', value: 'Pong bot!', inline: true },
         {
           name: 'clear',
-          value: `Clear messages (admin only)!\n__Usage__: \`${prefix}clear 20\` (will clear 20 messages)`,
+          value: `Clear messages (admin only)!\n__Usage__ : \`${prefix}clear 20\` (will clear 20 messages)`,
         },
+        { name: 'server', value: 'Show server information' },
         { name: 'info', value: 'Show bot information' },
       ])
       .setColor('#5f74ec');
