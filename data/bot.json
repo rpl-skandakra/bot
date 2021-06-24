@@ -1,6 +1,7 @@
 {
   "name": "RPL Skandakra Bot",
-  "description": "Bot for Help Moderation RPL Skandakra Dev Discord Server.",
+  "description": "Bot sebagai hansip di server RPL Skandakra Dev.",
   "prefix": "=>",
+  "repo": "https://hendraaagil.space/",
   "version": "1.0.0"
 }

@@ -62,9 +62,15 @@ client.on('message', (message) => {
         case 'clear':
           commands.get('clear').execute(message, text);
           break;
+        case 'info':
+          commands.get('info').execute(message);
+          break;
+        case 'commands':
+          commands.get('commands').execute(message);
+          break;
         default:
           message.channel.send(
-            `Commands tidak ditemukan! Silahkan ketik **${prefix}info\** untuk menampilkan list commands.`
+            `Commands tidak ditemukan! Silahkan ketik **${prefix}commands\** untuk menampilkan list commands.`
           );
           break;
       }
