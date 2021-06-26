@@ -54,13 +54,16 @@ client.on('message', (message) => {
     if (message.content.startsWith(prefix)) {
       switch (text[0]) {
         case 'ping':
-          message.channel.send('🏓 **Pong!**');
+          message.reply('🏓 **Pong!**');
           break;
         case 'pong':
-          message.channel.send('🏓 **Ping!**');
+          message.reply('🏓 **Ping!**');
           break;
         case 'clear':
           commands.get('clear').execute(message, text);
+          break;
+        case 'sholat':
+          commands.get('sholat').execute(message, text);
           break;
         case 'server':
           commands.get('server').execute(message);

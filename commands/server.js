@@ -1,3 +1,5 @@
+const { format } = require('date-fns');
+const { id } = require('date-fns/locale');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -19,7 +21,12 @@ module.exports = {
           name: `Daftar ${adminRole.name}`,
           value: listAdmin,
         },
-        { name: 'Dibuat Pada', value: message.guild.createdAt },
+        {
+          name: 'Dibuat Pada',
+          value: format(new Date(message.guild.createdAt), 'PPPP', {
+            locale: id,
+          }),
+        },
       ])
       .setImage(message.guild.iconURL())
       .setColor('#43823a');

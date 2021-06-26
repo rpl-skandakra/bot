@@ -12,11 +12,15 @@ module.exports = {
         { name: 'ping', value: 'Ping bot!', inline: true },
         { name: 'pong', value: 'Pong bot!', inline: true },
         {
-          name: 'clear',
-          value: `Clear messages (admin only)!\n__Usage__ : \`${prefix}clear 20\` (will clear 20 messages)`,
+          name: 'sholat',
+          value: 'Menampilkan jadwal sholat berdasarkan daerah',
         },
-        { name: 'server', value: 'Show server information' },
-        { name: 'info', value: 'Show bot information' },
+        { name: 'server', value: 'Menampilkan informasi server' },
+        { name: 'info', value: 'Menampilkan informasi bot' },
+        {
+          name: 'clear',
+          value: `Menghapus pesan (admin only)!\n__Usage__ : \`${prefix}clear 20\` (akan menghapus 20 pesan)`,
+        },
       ])
       .setColor('#5f74ec');
     message.channel.send(commandLists);
