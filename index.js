@@ -46,6 +46,20 @@ client.on('guildMemberAdd', (member) => {
   }
 });
 
+client.on('guildMemberRemove', (member) => {
+  const chLeave = member.guild.channels.cache.find(
+    (ch) => ch.id === process.env.CH_LEAVE_ID
+  );
+
+  if (!chLeave) return;
+
+  if (member.guild.id === process.env.SERVER_ID) {
+    chLeave.send(
+      `Terima kasih telah menjadi bagian dari kami.\nSee you **${member.displayName}** 🍃`
+    );
+  }
+});
+
 client.on('message', (message) => {
   if (message.channel.id === process.env.CH_INTRO_ID && !message.author.bot) {
     commands.get('intro').execute(message);
