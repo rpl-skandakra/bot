@@ -25,9 +25,13 @@ module.exports = {
         },
       ])
       .setFooter(
-        `Dibuat Pada : ${format(new Date(message.guild.createdAt), 'PPPP', {
-          locale: id,
-        })}`
+        `Server Ini Dibuat Pada : ${format(
+          new Date(message.guild.createdAt),
+          'PPPP',
+          {
+            locale: id,
+          }
+        )}`
       );
     message.channel.send(serverInfo);
   },

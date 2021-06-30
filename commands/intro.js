@@ -21,15 +21,18 @@ module.exports = {
       );
       if (regexPattern.test(message.content)) {
         user.roles.add(roleMember);
+        message.react('☑');
         message.reply(
           `Selamat kamu sudah resmi menjadi **${roleMember.name}** dari **${message.guild.name}**.\nSelamat bergabung dan jangan lupa pilih role terlebih dahulu di ${chRole}!`
         );
       } else {
+        message.react('❌');
         message.reply(
           'Silahkan masukkan format perkenalan dengan benar!\n**Contoh :**\n> Nama : Budi\n> Kelas : 11\n> Hobi : Memancing'
         );
       }
     } else {
+      message.react('⚠');
       message.reply(
         `Kamu sudah menjadi ${roleMember.name}, tidak perlu mengirim pesan lagi di channel ini.`
       );

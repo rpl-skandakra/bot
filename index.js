@@ -90,7 +90,7 @@ client.on('message', (message) => {
           break;
         default:
           message.channel.send(
-            `Commands tidak ditemukan! Silahkan ketik **${prefix}commands\** untuk menampilkan list commands.`
+            `Commands tidak ditemukan! Silahkan ketik \`${prefix}commands\` untuk menampilkan list commands.`
           );
           break;
       }
