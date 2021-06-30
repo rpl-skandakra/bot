@@ -13,7 +13,9 @@ module.exports = {
     const listAdmin = admins.map((admin) => `▸ ${admin}`);
 
     const serverInfo = new MessageEmbed()
+      .setColor('#43823a')
       .setTitle(`${message.guild.name} Discord Server 🛡`)
+      .setThumbnail(message.guild.iconURL())
       .setDescription(message.guild.description)
       .addFields([
         { name: 'Owner', value: message.guild.owner },
@@ -21,15 +23,12 @@ module.exports = {
           name: `Daftar ${adminRole.name}`,
           value: listAdmin,
         },
-        {
-          name: 'Dibuat Pada',
-          value: format(new Date(message.guild.createdAt), 'PPPP', {
-            locale: id,
-          }),
-        },
       ])
-      .setImage(message.guild.iconURL())
-      .setColor('#43823a');
+      .setFooter(
+        `Dibuat Pada : ${format(new Date(message.guild.createdAt), 'PPPP', {
+          locale: id,
+        })}`
+      );
     message.channel.send(serverInfo);
   },
 };

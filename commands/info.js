@@ -15,7 +15,9 @@ module.exports = {
       (member) => member.id === process.env.BOT_ID
     );
     const infoBot = new MessageEmbed()
+      .setColor('#5f74ec')
       .setTitle(`${name}'s Information`)
+      .setThumbnail(bot.user.avatarURL())
       .setDescription(description)
       .addFields([
         { name: 'prefix', value: prefix, inline: true },
@@ -26,9 +28,7 @@ module.exports = {
         },
         { name: 'repository', value: repo },
       ])
-      .setColor('#5f74ec')
-      .setImage(bot.user.avatarURL())
-      .setTimestamp(new Date())
+      .setTimestamp()
       .setFooter(`Versi ${version}`);
     message.channel.send(infoBot);
   },

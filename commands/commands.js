@@ -6,6 +6,7 @@ module.exports = {
   description: 'Show bot command lists',
   execute: (message) => {
     const commandLists = new MessageEmbed()
+      .setColor('#5f74ec')
       .setTitle(`${name}'s Command Lists`)
       .setDescription(`🤖 Daftar commands yang tersedia untuk ${name}`)
       .addFields([
@@ -21,8 +22,7 @@ module.exports = {
           name: 'clear',
           value: `Menghapus pesan (admin only)!\n__Usage__ : \`${prefix}clear 20\` (akan menghapus 20 pesan)`,
         },
-      ])
-      .setColor('#5f74ec');
+      ]);
     message.channel.send(commandLists);
   },
 };
