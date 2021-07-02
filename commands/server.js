@@ -13,7 +13,7 @@ module.exports = {
     const listAdmin = admins.map((admin) => `▸ ${admin}`);
 
     const serverInfo = new MessageEmbed()
-      .setColor('#43823a')
+      .setColor('#4484f1')
       .setTitle(`${message.guild.name} Discord Server 🛡`)
       .setThumbnail(message.guild.iconURL())
       .setDescription(message.guild.description)

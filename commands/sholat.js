@@ -46,7 +46,7 @@ module.exports = {
               },
             ])
             .setTimestamp(new Date())
-            .setColor('#5f74ec');
+            .setColor('#4484f1');
           message.channel.send(praySchedule);
         })
         .catch((error) => {

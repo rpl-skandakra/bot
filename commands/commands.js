@@ -6,7 +6,7 @@ module.exports = {
   description: 'Show bot command lists',
   execute: (message) => {
     const commandLists = new MessageEmbed()
-      .setColor('#5f74ec')
+      .setColor('#34bc6c')
       .setTitle(`${name}'s Command Lists`)
       .setDescription(`🤖 Daftar commands yang tersedia untuk ${name}`)
       .addFields([

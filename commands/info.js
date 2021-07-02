@@ -15,7 +15,7 @@ module.exports = {
       (member) => member.id === process.env.BOT_ID
     );
     const infoBot = new MessageEmbed()
-      .setColor('#5f74ec')
+      .setColor('#34bc6c')
       .setTitle(`${name}'s Information`)
       .setThumbnail(bot.user.avatarURL())
       .setDescription(description)
