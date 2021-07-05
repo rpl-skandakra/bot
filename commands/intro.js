@@ -16,7 +16,7 @@ module.exports = {
     );
 
     if (!isMember) {
-      const regexPattern = new RegExp(/(Nama|Kelas|Hobi)[:][\s\w]?\w{3,}/);
+      const regexPattern = new RegExp(/(Nama|Kelas|Hobi)[\s][:][\s\w]?\w{3,}/);
       if (regexPattern.test(message.content)) {
         user.roles.add(roleMember);
         message.react('☑');
