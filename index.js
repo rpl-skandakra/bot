@@ -68,10 +68,10 @@ client.on('message', (message) => {
     if (message.content.startsWith(prefix)) {
       switch (text[0]) {
         case 'ping':
-          message.reply('🏓 **Pong!**');
+          message.reply(`🏓 **Pong!**, \`${client.ws.ping}ms.\``);
           break;
         case 'pong':
-          message.reply('🏓 **Ping!**');
+          message.reply(`🏓 **Ping!**, \`${client.ws.ping}ms.\``);
           break;
         case 'clear':
           commands.get('clear').execute(message, text);
