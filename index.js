@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const dotenv = require('dotenv');
 const fs = require('fs');
+const http = require('http');
 const { prefix } = require('./data/bot.json');
 
 dotenv.config();
@@ -16,14 +17,26 @@ files.map((file) => {
   commands.set(command.name, command);
 });
 
+// createServer
+http
+  .createServer(function (req, res) {
+    res.write(`I'm alive!`);
+    res.end();
+  })
+  .listen(8080);
+
 client.on('ready', () => {
   console.log('Bot sudah siap!');
 
-  client.user
-    .setActivity('RPL Skandakra Dev', {
-      type: 'LISTENING',
-    })
-    .catch(console.error);
+  const peoples = ['Masyarakat', 'RPL Skandakra Dev', 'Discord Server'];
+  let i = 0;
+  setInterval(() => {
+    client.user
+      .setActivity(peoples[i++ % peoples.length], {
+        type: 'LISTENING',
+      })
+      .catch(console.error);
+  }, 3000);
 });
 
 client.on('guildMemberAdd', (member) => {
