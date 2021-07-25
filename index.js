@@ -29,12 +29,11 @@ client.on('ready', () => {
   console.log('Bot sudah siap!');
 
   const peoples = ['Masyarakat', 'RPL Skandakra Dev', 'Discord Server'];
-  const activities = ['LISTENING', 'WATCHING'];
   let i = 0;
   setInterval(() => {
     client.user
       .setActivity(peoples[i++ % peoples.length], {
-        type: activities[i++ % activities.length],
+        type: 'LISTENING',
       })
       .catch(console.error);
   }, 10000);
