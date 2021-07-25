@@ -16,7 +16,9 @@ module.exports = {
     );
 
     if (!isMember) {
-      const regexPattern = new RegExp(/(Nama|Kelas|Hobi)[\s][:][\s\w]?\w{3,}/);
+      const regexPattern = new RegExp(
+        /(Nama|Kelas|Hobi|Asal Sekolah)[\s][:][\s\w]?\w{3,}/
+      );
       if (regexPattern.test(message.content)) {
         user.roles.add(roleMember);
         message.react('☑');
@@ -26,7 +28,7 @@ module.exports = {
       } else {
         message.react('❌');
         message.reply(
-          'Silahkan masukkan format perkenalan dengan benar!\n**Contoh :**\n> Nama : Budi\n> Kelas : 11\n> Hobi : Memancing'
+          'Silahkan masukkan format perkenalan dengan benar!\n**Contoh :**\n> Nama : Budi\n> Kelas : 11\n> Hobi : Memancing\n> Asal Sekolah : SMKN 2 Karanganyar'
         );
       }
     } else {
