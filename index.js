@@ -29,14 +29,15 @@ client.on('ready', () => {
   console.log('Bot sudah siap!');
 
   const peoples = ['Masyarakat', 'RPL Skandakra Dev', 'Discord Server'];
+  const activities = ['LISTENING', 'WATCHING'];
   let i = 0;
   setInterval(() => {
     client.user
       .setActivity(peoples[i++ % peoples.length], {
-        type: 'LISTENING',
+        type: activities[i++ % activities.length],
       })
       .catch(console.error);
-  }, 5000);
+  }, 10000);
 });
 
 client.on('guildMemberAdd', (member) => {
