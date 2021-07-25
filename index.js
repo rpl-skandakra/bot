@@ -36,7 +36,7 @@ client.on('ready', () => {
         type: 'LISTENING',
       })
       .catch(console.error);
-  }, 3000);
+  }, 5000);
 });
 
 client.on('guildMemberAdd', (member) => {
