@@ -18,7 +18,7 @@ module.exports = {
     );
     if (regexPattern.test(message.content)) {
       user.roles.add(roleMember);
-      chLog.send(message);
+      chLog.send(`Pesan dari ${user}\n${message}`);
       message.react('☑');
       message.reply(
         `Selamat kamu sudah resmi menjadi **${roleMember.name}** dari **${message.guild.name}**.\nSelamat bergabung dan jangan lupa pilih role terlebih dahulu di ${chRole}!`
