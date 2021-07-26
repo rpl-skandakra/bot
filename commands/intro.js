@@ -1,7 +1,7 @@
 module.exports = {
   name: 'intro',
   description: 'To validate user introduction after joining server',
-  execute: (message) => {
+  execute: (client, message) => {
     const chRole = message.guild.channels.cache.find(
       (channel) => channel.id === process.env.CH_ROLE_ID
     );

@@ -75,7 +75,7 @@ client.on('guildMemberRemove', (member) => {
 
 client.on('message', (message) => {
   if (message.channel.id === process.env.CH_INTRO_ID && !message.author.bot) {
-    commands.get('intro').execute(message);
+    commands.get('intro').execute(client, message);
   } else {
     const text = message.content.substring(prefix.length).split(' ');
     if (message.content.startsWith(prefix)) {
