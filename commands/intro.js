@@ -11,12 +11,14 @@ module.exports = {
     const user = message.guild.members.cache.find(
       (member) => member.id === message.author.id
     );
+    const chLog = client.channels.cache.get(process.env.CH_LOG_ID);
 
     const regexPattern = new RegExp(
       /(Nama|Kelas|Hobi|Asal Sekolah)[\s][:][\s\w]?\w{3,}/
     );
     if (regexPattern.test(message.content)) {
       user.roles.add(roleMember);
+      chLog.send(message);
       message.react('☑');
       message.reply(
         `Selamat kamu sudah resmi menjadi **${roleMember.name}** dari **${message.guild.name}**.\nSelamat bergabung dan jangan lupa pilih role terlebih dahulu di ${chRole}!`
