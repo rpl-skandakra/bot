@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 const { format, formatISO } = require('date-fns');
 const { id } = require('date-fns/locale');
 const { MessageEmbed } = require('discord.js');
+const { prefix } = require('../data/bot.json');
 
 module.exports = {
   name: 'sholat',
@@ -56,7 +57,9 @@ module.exports = {
           );
         });
     } else {
-      message.reply('Silahkan masukkan daerah yang ingin dicari');
+      message.reply(
+        `Silahkan masukkan daerah yang ingin dicari. Contoh: \`${prefix}sholat karanganyar\``
+      );
     }
   },
 };
