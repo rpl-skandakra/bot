@@ -6,13 +6,14 @@ const {
   repo,
   version,
 } = require('../data/bot.json');
+const { BOT_ID } = require('../data/listId.json');
 
 module.exports = {
   name: 'info',
   description: 'Show bot information',
   execute: (message) => {
     const bot = message.guild.members.cache.find(
-      (member) => member.id === process.env.BOT_ID
+      (member) => member.id === BOT_ID
     );
     const infoBot = new MessageEmbed()
       .setColor('#34bc6c')

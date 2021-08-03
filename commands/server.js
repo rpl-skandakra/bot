@@ -1,13 +1,14 @@
 const { format } = require('date-fns');
 const { id } = require('date-fns/locale');
 const { MessageEmbed } = require('discord.js');
+const { ROLE_ADMIN_ID } = require('../data/listId.json');
 
 module.exports = {
   name: 'server',
   description: 'Show information about server',
   execute: (message) => {
     const adminRole = message.guild.roles.cache.find(
-      (role) => role.id === process.env.ROLE_ADMIN_ID
+      (role) => role.id === ROLE_ADMIN_ID
     );
     const admins = adminRole.members;
     const listAdmin = admins.map((admin) => `▸ ${admin}`);

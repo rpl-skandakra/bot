@@ -1,8 +1,14 @@
 const Discord = require('discord.js');
 const dotenv = require('dotenv');
 const fs = require('fs');
-const http = require('http');
 const { prefix } = require('./data/bot.json');
+const {
+  CH_INTRO_ID,
+  CH_LEAVE_ID,
+  CH_LOBBY_ID,
+  CH_RULES_ID,
+  SERVER_ID,
+} = require('./data/listId.json');
 
 dotenv.config();
 const client = new Discord.Client();
@@ -16,14 +22,6 @@ files.map((file) => {
   const command = require(`./commands/${file}`);
   commands.set(command.name, command);
 });
-
-// createServer
-http
-  .createServer(function (req, res) {
-    res.write(`I'm alive!`);
-    res.end();
-  })
-  .listen(8080);
 
 client.on('ready', () => {
   console.log('Bot sudah siap!');
@@ -41,18 +39,18 @@ client.on('ready', () => {
 
 client.on('guildMemberAdd', (member) => {
   const chLobby = member.guild.channels.cache.find(
-    (ch) => ch.id === process.env.CH_LOBBY_ID
+    (ch) => ch.id === CH_LOBBY_ID
   );
   const chRule = member.guild.channels.cache.find(
-    (ch) => ch.id === process.env.CH_RULE_ID
+    (ch) => ch.id === CH_RULES_ID
   );
   const chIntro = member.guild.channels.cache.find(
-    (ch) => ch.id === process.env.CH_INTRO_ID
+    (ch) => ch.id === CH_INTRO_ID
   );
 
   if (!chLobby) return;
 
-  if (member.guild.id === process.env.SERVER_ID) {
+  if (member.guild.id === SERVER_ID) {
     chLobby.send(
       `Haii ${member}, selamat datang di server **${member.guild.name}**.\nSilahkan baca peraturan di ${chRule} dan jangan lupa memperkenalkan diri di ${chIntro} agar bisa mengakses semua channel di server ini.`
     );
@@ -61,12 +59,12 @@ client.on('guildMemberAdd', (member) => {
 
 client.on('guildMemberRemove', (member) => {
   const chLeave = member.guild.channels.cache.find(
-    (ch) => ch.id === process.env.CH_LEAVE_ID
+    (ch) => ch.id === CH_LEAVE_ID
   );
 
   if (!chLeave) return;
 
-  if (member.guild.id === process.env.SERVER_ID) {
+  if (member.guild.id === SERVER_ID) {
     chLeave.send(
       `Terima kasih telah menjadi bagian dari kami.\nSee you **${member.displayName}** 🍃`
     );
@@ -74,7 +72,7 @@ client.on('guildMemberRemove', (member) => {
 });
 
 client.on('message', (message) => {
-  if (message.channel.id === process.env.CH_INTRO_ID && !message.author.bot) {
+  if (message.channel.id === CH_INTRO_ID && !message.author.bot) {
     commands.get('intro').execute(client, message);
   } else {
     const text = message.content.substring(prefix.length).split(' ');
