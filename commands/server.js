@@ -1,7 +1,7 @@
 const { format } = require('date-fns');
 const { id } = require('date-fns/locale');
 const { MessageEmbed } = require('discord.js');
-const { ROLE_ADMIN_ID } = require('../data/listId.json');
+const { ROLE_ADMIN_ID } = require('../data/listIdTest.json');
 
 module.exports = {
   name: 'server',

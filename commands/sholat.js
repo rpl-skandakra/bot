@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const axios = require('axios');
 const { format, formatISO } = require('date-fns');
 const { id } = require('date-fns/locale');
 const { MessageEmbed } = require('discord.js');
@@ -14,10 +14,10 @@ module.exports = {
     const location = text[1];
 
     if (text[1]) {
-      fetch(
-        `https://raw.githubusercontent.com/lakuapik/jadwalsholatorg/master/adzan/${location}/${year}/${month}.json`
-      )
-        .then((res) => res.json())
+      axios
+        .get(
+          `https://raw.githubusercontent.com/lakuapik/jadwalsholatorg/master/adzan/${location}/${year}/${month}.json`
+        )
         .then((res) => {
           const schedule = res.find((r) => r.tanggal === currentDate);
           const { shubuh, terbit, dzuhur, ashr, magrib, isya } = schedule;

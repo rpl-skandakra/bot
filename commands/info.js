@@ -6,7 +6,7 @@ const {
   repo,
   version,
 } = require('../data/bot.json');
-const { BOT_ID } = require('../data/listId.json');
+const { BOT_ID } = require('../data/listIdTest.json');
 
 module.exports = {
   name: 'info',

@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const { Client, Collection, Intents } = require('discord.js');
 const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
@@ -9,11 +9,18 @@ const {
   CH_LOBBY_ID,
   CH_RULES_ID,
   SERVER_ID,
-} = require('./data/listId.json');
+} = require('./data/listIdTest.json');
 
 dotenv.config();
-const client = new Discord.Client();
-const commands = new Discord.Collection();
+const client = new Client({
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MEMBERS,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_PRESENCES,
+  ],
+});
+client.commands = new Collection();
 
 const files = fs
   .readdirSync(path.resolve('./commands'))
@@ -21,7 +28,7 @@ const files = fs
 
 files.map((file) => {
   const command = require(`./commands/${file}`);
-  commands.set(command.name, command);
+  client.commands.set(command.name, command);
 });
 
 client.on('ready', () => {
@@ -30,12 +37,10 @@ client.on('ready', () => {
   const peoples = ['Masyarakat', 'RPL Skandakra Dev', 'Discord Server'];
   let i = 0;
   setInterval(() => {
-    client.user
-      .setActivity(peoples[i++ % peoples.length], {
-        type: 'LISTENING',
-      })
-      .catch(console.error);
-  }, 10000);
+    client.user.setActivity(peoples[i++ % peoples.length], {
+      type: 'LISTENING',
+    });
+  }, 15000);
 });
 
 client.on('guildMemberAdd', (member) => {
@@ -53,7 +58,7 @@ client.on('guildMemberAdd', (member) => {
 
   if (member.guild.id === SERVER_ID) {
     chLobby.send(
-      `Haii ${member}, selamat datang di server **${member.guild.name}**.\nSilahkan baca peraturan di ${chRule} dan jangan lupa memperkenalkan diri di ${chIntro} agar bisa mengakses semua channel di server ini.`
+      `Halo ${member}, selamat datang di server **${member.guild.name}**.\nSilahkan baca peraturan di ${chRule} dan jangan lupa memperkenalkan diri di ${chIntro} agar bisa mengakses semua channel di server ini.`
     );
   }
 });
@@ -72,9 +77,9 @@ client.on('guildMemberRemove', (member) => {
   }
 });
 
-client.on('message', (message) => {
+client.on('messageCreate', (message) => {
   if (message.channel.id === CH_INTRO_ID && !message.author.bot) {
-    commands.get('intro').execute(client, message);
+    client.commands.get('intro').execute(client, message);
   } else {
     const text = message.content.substring(prefix.length).split(' ');
     if (message.content.startsWith(prefix)) {
@@ -85,21 +90,21 @@ client.on('message', (message) => {
         case 'pong':
           message.reply(`🏓 **Ping!**, \`${client.ws.ping}ms\`.`);
           break;
-        case 'clear':
-          commands.get('clear').execute(message, text);
-          break;
-        case 'sholat':
-          commands.get('sholat').execute(message, text);
-          break;
-        case 'server':
-          commands.get('server').execute(message);
-          break;
-        case 'info':
-          commands.get('info').execute(message);
-          break;
-        case 'commands':
-          commands.get('commands').execute(message);
-          break;
+        // case 'clear':
+        //   client.commands.get('clear').execute(message, text);
+        //   break;
+        // case 'sholat':
+        //   client.commands.get('sholat').execute(message, text);
+        //   break;
+        // case 'server':
+        //   client.commands.get('server').execute(message);
+        //   break;
+        // case 'info':
+        //   client.commands.get('info').execute(message);
+        //   break;
+        // case 'commands':
+        //   client.commands.get('commands').execute(message);
+        //   break;
         default:
           message.channel.send(
             `Commands tidak ditemukan! Silahkan ketik \`${prefix}commands\` untuk menampilkan list commands.`

@@ -2,7 +2,7 @@ const {
   CH_LOG_ID,
   CH_ROLE_ID,
   ROLE_MEMBER_ID,
-} = require('../data/listId.json');
+} = require('../data/listIdTest.json');
 
 module.exports = {
   name: 'intro',
