@@ -1,4 +1,4 @@
-name: Continuous Deployment
+name: Deployment
 
 on:
   push:
@@ -16,4 +16,10 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          script: cd ${{ secrets.APP_DIR_PATH }} && git pull origin main && pm2 restart ecosystem.config.js
+          script: |
+            cd ${{ secrets.APP_DIR_PATH }}
+            git pull origin main
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            npm install
+            pm2 restart ecosystem.config.js
