@@ -1,5 +1,7 @@
 # RPL Skandakra Bot
 
+![Deployment](https://github.com/rpl-skandakra/bot/actions/workflows/deploy.yml/badge.svg)
+
 ![Bot Information](docs/info-bot.png)
 
 Bot for help moderation in RPL Skandakra Discord Server.
