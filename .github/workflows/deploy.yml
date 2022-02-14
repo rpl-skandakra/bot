@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Use Node.js
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '14'
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v0.1.4
         with:
@@ -19,7 +24,5 @@ jobs:
           script: |
             cd ${{ secrets.APP_DIR_PATH }}
             git pull origin main
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            npm install
+            npm install pm2
             pm2 restart ecosystem.config.js
