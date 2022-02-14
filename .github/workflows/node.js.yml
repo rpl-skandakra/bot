@@ -39,6 +39,6 @@ jobs:
         script: |
           cd ${{ secrets.APP_DIR_PATH }}
           git pull origin main
-          export PATH=$PATH:${{ secrets.NODE_DIR_PATH }}
+          export PATH=$PATH:/home/hendraaagil/.fnm/node-versions/v14.19.0/installation
           npm install
           pm2 restart ecosystem.config.js
