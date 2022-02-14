@@ -40,5 +40,5 @@ jobs:
           cd ${{ secrets.APP_DIR_PATH }}
           git pull origin main
           export PATH=$PATH:~/.fnm/node-versions/v14.19.0/installation/bin
-          npm install
+          yarn
           pm2 restart ecosystem.config.js
