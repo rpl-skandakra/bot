@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const dotenv = require('dotenv');
 const fs = require('fs');
+const path = require('path');
 const { prefix } = require('./data/bot.json');
 const {
   CH_INTRO_ID,
@@ -15,7 +16,7 @@ const client = new Discord.Client();
 const commands = new Discord.Collection();
 
 const files = fs
-  .readdirSync('./commands')
+  .readdirSync(path.resolve('./commands'))
   .filter((file) => file.endsWith('.js'));
 
 files.map((file) => {
