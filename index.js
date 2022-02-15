@@ -9,7 +9,7 @@ const {
   CH_LOBBY_ID,
   CH_RULES_ID,
   SERVER_ID,
-} = require('./data/listIdTest.json');
+} = require('./data/listId.json');
 
 dotenv.config();
 const client = new Client({

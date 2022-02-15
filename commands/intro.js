@@ -1,4 +1,4 @@
-const { CH_LOG_ID, CH_ROLE_ID, ROLE_MEMBER_ID } = require('../data/listIdTest.json');
+const { CH_LOG_ID, CH_ROLE_ID, ROLE_MEMBER_ID } = require('../data/listId.json');
 
 module.exports = {
   name: 'intro',

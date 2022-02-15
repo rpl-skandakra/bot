@@ -1,4 +1,4 @@
-const { ROLE_ADMIN_ID } = require('../data/listIdTest.json');
+const { ROLE_ADMIN_ID } = require('../data/listId.json');
 
 module.exports = {
   name: 'clear',
