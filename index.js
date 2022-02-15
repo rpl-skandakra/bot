@@ -1,17 +1,10 @@
-const dotenv = require('dotenv');
+require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const { Client, Collection, Intents } = require('discord.js');
 const { prefix } = require('./data/bot.json');
-const {
-  CH_INTRO_ID,
-  CH_LEAVE_ID,
-  CH_LOBBY_ID,
-  CH_RULES_ID,
-  SERVER_ID,
-} = require('./data/listId.json');
+const { CH_INTRO_ID, CH_LEAVE_ID, CH_LOBBY_ID, CH_RULES_ID, SERVER_ID } = process.env;
 
-dotenv.config();
 const client = new Client({
   intents: [
     Intents.FLAGS.GUILDS,

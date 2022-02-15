@@ -6,8 +6,10 @@
   "author": "rplskandakra",
   "license": "MIT",
   "scripts": {
-    "start": "node .",
-    "dev": "nodemon"
+    "predev": "node deploy-commands",
+    "dev": "nodemon",
+    "prestart": "node deploy-commands",
+    "start": "node ."
   },
   "dependencies": {
     "@discordjs/builders": "^0.12.0",

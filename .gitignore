@@ -4,4 +4,3 @@ node_modules
 # Igonre config files
 .env
 ecosystem.config.js
-data/listIdTest.json

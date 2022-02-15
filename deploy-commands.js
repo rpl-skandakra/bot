@@ -1,14 +1,13 @@
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
-const dotenv = require('dotenv');
+require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
-const { SERVER_ID, BOT_ID } = require('./data/listId.json');
-dotenv.config();
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+const { BOT_ID, BOT_TOKEN, SERVER_ID } = process.env;
 
 const commands = [];
 
-const rest = new REST({ version: '9' }).setToken(process.env.BOT_TOKEN);
+const rest = new REST({ version: '9' }).setToken(BOT_TOKEN);
 const files = fs.readdirSync(path.resolve('./commands')).filter((file) => file.endsWith('.js'));
 
 const command = require(`./commands/ping.js`);
