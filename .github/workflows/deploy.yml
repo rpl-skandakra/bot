@@ -2,7 +2,7 @@ name: Deployment
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   deploy:
@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: SSH and deploy app
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        script: |
-          cd ${{ secrets.APP_DIR_PATH }}
-          git pull origin main
-          export PATH=$PATH:~/.fnm/node-versions/v14.19.0/installation/bin
-          yarn
-          pm2 restart ecosystem.config.js
+      - name: SSH and deploy app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd ${{ secrets.APP_DIR_PATH }}
+            git pull origin main
+            export PATH=$PATH:~/.fnm/node-versions/v16.14.0/installation/bin
+            yarn
+            pm2 restart ecosystem.config.js
