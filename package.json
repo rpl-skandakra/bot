@@ -6,7 +6,7 @@
   "author": "rplskandakra",
   "license": "MIT",
   "scripts": {
-    "start": "node",
+    "start": "node .",
     "dev": "nodemon"
   },
   "dependencies": {

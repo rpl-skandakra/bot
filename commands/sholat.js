@@ -7,7 +7,7 @@ const { prefix } = require('../data/bot.json');
 module.exports = {
   name: 'sholat',
   description: 'Show schedule of pray based on location',
-  execute: (message, text) => {
+  execute: (message, client, text) => {
     const year = new Date().getFullYear();
     const month = format(new Date(), 'MM');
     const currentDate = formatISO(new Date(), { representation: 'date' });
@@ -18,16 +18,13 @@ module.exports = {
         .get(
           `https://raw.githubusercontent.com/lakuapik/jadwalsholatorg/master/adzan/${location}/${year}/${month}.json`
         )
-        .then((res) => {
-          const schedule = res.find((r) => r.tanggal === currentDate);
+        .then((response) => {
+          const schedule = response.data.find((data) => data.tanggal === currentDate);
           const { shubuh, terbit, dzuhur, ashr, magrib, isya } = schedule;
 
+          const lokasi = `${location.charAt(0).toUpperCase()}${location.slice(1)}`;
           const praySchedule = new MessageEmbed()
-            .setTitle(
-              `Jadwal Sholat Daerah ${location
-                .charAt(0)
-                .toUpperCase()}${location.slice(1)} ⏲`
-            )
+            .setTitle(`Jadwal Sholat Daerah ${lokasi} ⏲`)
             .addFields([
               {
                 name: 'Hari, Tanggal',
@@ -46,15 +43,23 @@ module.exports = {
                 value: 'https://github.com/lakuapik/jadwalsholatorg',
               },
             ])
-            .setTimestamp(new Date())
-            .setColor('#4484f1');
-          message.channel.send(praySchedule);
+            .setColor('#4484f1')
+            .setFooter({
+              text: `Command used by: ${message.author.username}#${message.author.discriminator}`,
+              iconURL: message.author.avatarURL(),
+            });
+
+          message.channel.send({ embeds: [praySchedule] });
         })
         .catch((error) => {
-          console.log(error);
-          message.channel.send(
-            `⚠ Mohon maaf, terdapat kesalahan pengambilan data\n\`\`\`bash\n${error}\`\`\``
-          );
+          console.log(error.response);
+          if (error.response.status === 404) {
+            message.channel.send(`⚠ Jadwal lokasi **${location}** tidak ditemukan!`);
+          } else {
+            message.channel.send(
+              `⚠ Mohon maaf, terdapat kesalahan pengambilan data\n\`\`\`bash\n${error.response.data}\`\`\``
+            );
+          }
         });
     } else {
       message.reply(

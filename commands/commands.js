@@ -22,7 +22,12 @@ module.exports = {
           name: 'clear',
           value: `Menghapus pesan (admin only)!\n__Usage__ : \`${prefix}clear 20\` (akan menghapus 20 pesan)`,
         },
-      ]);
-    message.channel.send(commandLists);
+      ])
+      .setFooter({
+        text: `Command used by: ${message.author.username}#${message.author.discriminator}`,
+        iconURL: message.author.avatarURL(),
+      });
+
+    message.channel.send({ embeds: [commandLists] });
   },
 };

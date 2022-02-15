@@ -1,20 +1,12 @@
 const { MessageEmbed } = require('discord.js');
-const {
-  description,
-  name,
-  prefix,
-  repo,
-  version,
-} = require('../data/bot.json');
+const { description, name, prefix, repo, version } = require('../data/bot.json');
 const { BOT_ID } = require('../data/listIdTest.json');
 
 module.exports = {
   name: 'info',
   description: 'Show bot information',
   execute: (message) => {
-    const bot = message.guild.members.cache.find(
-      (member) => member.id === BOT_ID
-    );
+    const bot = message.guild.members.cache.find((member) => member.id === BOT_ID);
     const infoBot = new MessageEmbed()
       .setColor('#34bc6c')
       .setTitle(`${name}'s Information`)
@@ -30,7 +22,8 @@ module.exports = {
         { name: 'repository', value: repo },
       ])
       .setTimestamp()
-      .setFooter(`Versi ${version}`);
-    message.channel.send(infoBot);
+      .setFooter({ text: `Versi ${version}` });
+
+    message.channel.send({ embeds: [infoBot] });
   },
 };

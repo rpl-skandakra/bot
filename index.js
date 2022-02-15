@@ -1,7 +1,7 @@
-const { Client, Collection, Intents } = require('discord.js');
 const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
+const { Client, Collection, Intents } = require('discord.js');
 const { prefix } = require('./data/bot.json');
 const {
   CH_INTRO_ID,
@@ -22,9 +22,7 @@ const client = new Client({
 });
 client.commands = new Collection();
 
-const files = fs
-  .readdirSync(path.resolve('./commands'))
-  .filter((file) => file.endsWith('.js'));
+const files = fs.readdirSync(path.resolve('./commands')).filter((file) => file.endsWith('.js'));
 
 files.map((file) => {
   const command = require(`./commands/${file}`);
@@ -32,7 +30,7 @@ files.map((file) => {
 });
 
 client.on('ready', () => {
-  console.log('Bot sudah siap!');
+  console.log('Bot is ready!');
 
   const peoples = ['Masyarakat', 'RPL Skandakra Dev', 'Discord Server'];
   let i = 0;
@@ -44,15 +42,9 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-  const chLobby = member.guild.channels.cache.find(
-    (ch) => ch.id === CH_LOBBY_ID
-  );
-  const chRule = member.guild.channels.cache.find(
-    (ch) => ch.id === CH_RULES_ID
-  );
-  const chIntro = member.guild.channels.cache.find(
-    (ch) => ch.id === CH_INTRO_ID
-  );
+  const chLobby = member.guild.channels.cache.find((ch) => ch.id === CH_LOBBY_ID);
+  const chRule = member.guild.channels.cache.find((ch) => ch.id === CH_RULES_ID);
+  const chIntro = member.guild.channels.cache.find((ch) => ch.id === CH_INTRO_ID);
 
   if (!chLobby) return;
 
@@ -64,9 +56,7 @@ client.on('guildMemberAdd', (member) => {
 });
 
 client.on('guildMemberRemove', (member) => {
-  const chLeave = member.guild.channels.cache.find(
-    (ch) => ch.id === CH_LEAVE_ID
-  );
+  const chLeave = member.guild.channels.cache.find((ch) => ch.id === CH_LEAVE_ID);
 
   if (!chLeave) return;
 
@@ -79,37 +69,17 @@ client.on('guildMemberRemove', (member) => {
 
 client.on('messageCreate', (message) => {
   if (message.channel.id === CH_INTRO_ID && !message.author.bot) {
-    client.commands.get('intro').execute(client, message);
+    client.commands.get('intro').execute(message, client);
   } else {
     const text = message.content.substring(prefix.length).split(' ');
     if (message.content.startsWith(prefix)) {
-      switch (text[0]) {
-        case 'ping':
-          message.reply(`🏓 **Pong!**, \`${client.ws.ping}ms\`.`);
-          break;
-        case 'pong':
-          message.reply(`🏓 **Ping!**, \`${client.ws.ping}ms\`.`);
-          break;
-        // case 'clear':
-        //   client.commands.get('clear').execute(message, text);
-        //   break;
-        // case 'sholat':
-        //   client.commands.get('sholat').execute(message, text);
-        //   break;
-        // case 'server':
-        //   client.commands.get('server').execute(message);
-        //   break;
-        // case 'info':
-        //   client.commands.get('info').execute(message);
-        //   break;
-        // case 'commands':
-        //   client.commands.get('commands').execute(message);
-        //   break;
-        default:
-          message.channel.send(
-            `Commands tidak ditemukan! Silahkan ketik \`${prefix}commands\` untuk menampilkan list commands.`
-          );
-          break;
+      const command = client.commands.get(text[0]);
+      if (command) {
+        command.execute(message, client, text);
+      } else {
+        message.channel.send(
+          `Commands tidak ditemukan! Silahkan ketik \`${prefix}commands\` untuk menampilkan list commands.`
+        );
       }
     }
   }

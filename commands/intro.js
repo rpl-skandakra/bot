@@ -1,22 +1,12 @@
-const {
-  CH_LOG_ID,
-  CH_ROLE_ID,
-  ROLE_MEMBER_ID,
-} = require('../data/listIdTest.json');
+const { CH_LOG_ID, CH_ROLE_ID, ROLE_MEMBER_ID } = require('../data/listIdTest.json');
 
 module.exports = {
   name: 'intro',
   description: 'To validate user introduction after joining server',
-  execute: (client, message) => {
-    const chRole = message.guild.channels.cache.find(
-      (channel) => channel.id === CH_ROLE_ID
-    );
-    const roleMember = message.guild.roles.cache.find(
-      (role) => role.id === ROLE_MEMBER_ID
-    );
-    const user = message.guild.members.cache.find(
-      (member) => member.id === message.author.id
-    );
+  execute: (message, client) => {
+    const chRole = message.guild.channels.cache.find((channel) => channel.id === CH_ROLE_ID);
+    const roleMember = message.guild.roles.cache.find((role) => role.id === ROLE_MEMBER_ID);
+    const user = message.guild.members.cache.find((member) => member.id === message.author.id);
     const chLog = client.channels.cache.get(CH_LOG_ID);
 
     let nama, kelas, hobi, asal;
@@ -48,8 +38,8 @@ module.exports = {
       user.roles.add(roleMember);
       chLog.send(`Pesan dari ${user}\n${message}`);
       message.react('☑');
-      message.reply(
-        `Selamat kamu sudah resmi menjadi **${roleMember.name}** dari **${message.guild.name}**.\nSelamat bergabung dan jangan lupa pilih role terlebih dahulu di ${chRole}!`
+      message.channel.send(
+        `Salam kenal ${user}, kamu sudah resmi menjadi **${roleMember.name}** dari **${message.guild.name}**.\nSelamat bergabung dan jangan lupa pilih role terlebih dahulu di ${chRole}!`
       );
     }
   },
