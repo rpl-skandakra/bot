@@ -3,5 +3,7 @@
   "description": "Bot sebagai hansip di server RPL Skandakra Dev.",
   "prefix": "=>",
   "repo": "https://github.com/rpl-skandakra/bot",
-  "version": "1.0.0"
+  "website": "https://rplskandakra.org",
+  "invite": "https://rplskandakra.org/discord",
+  "version": "2.0.0"
 }
