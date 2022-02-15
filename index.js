@@ -85,4 +85,14 @@ client.on('messageCreate', (message) => {
   }
 });
 
+client.on('interactionCreate', async (interaction) => {
+  console.log(interaction);
+  if (!interaction.isCommand()) return;
+  const text = interaction.commandName;
+  const command = client.commands.get(text);
+  if (command) {
+    command.execute(interaction, client, text);
+  }
+});
+
 client.login(process.env.BOT_TOKEN);
