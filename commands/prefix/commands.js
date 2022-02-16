@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const { name, prefix } = require('../data/bot.json');
+const { name, prefix } = require('../../data/bot.json');
 
 module.exports = {
   name: 'commands',

@@ -1,7 +1,7 @@
 const { format } = require('date-fns');
 const { id } = require('date-fns/locale');
 const { MessageEmbed } = require('discord.js');
-const { invite, website } = require('../data/bot.json');
+const { invite, website } = require('../../data/bot.json');
 const { ROLE_ADMIN_ID } = process.env;
 
 module.exports = {

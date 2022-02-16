@@ -2,7 +2,7 @@ const axios = require('axios');
 const { format, formatISO } = require('date-fns');
 const { id } = require('date-fns/locale');
 const { MessageEmbed } = require('discord.js');
-const { prefix } = require('../data/bot.json');
+const { prefix } = require('../../data/bot.json');
 
 module.exports = {
   name: 'sholat',

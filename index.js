@@ -15,10 +15,12 @@ const client = new Client({
 });
 client.commands = new Collection();
 
-const files = fs.readdirSync(path.resolve('./commands')).filter((file) => file.endsWith('.js'));
+const files = fs
+  .readdirSync(path.resolve('./commands/prefix'))
+  .filter((file) => file.endsWith('.js'));
 
 files.map((file) => {
-  const command = require(`./commands/${file}`);
+  const command = require(`./commands/prefix/${file}`);
   client.commands.set(command.name, command);
 });
 

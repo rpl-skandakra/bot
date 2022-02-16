@@ -8,10 +8,12 @@ const { BOT_ID, BOT_TOKEN, SERVER_ID } = process.env;
 const commands = [];
 
 const rest = new REST({ version: '9' }).setToken(BOT_TOKEN);
-const files = fs.readdirSync(path.resolve('./commands')).filter((file) => file.endsWith('.js'));
+const files = fs
+  .readdirSync(path.resolve('./commands/slash'))
+  .filter((file) => file.endsWith('.js'));
 
 files.map((file) => {
-  const command = require(`./commands/${file}`);
+  const command = require(`./commands/slash/${file}`);
   if (command.data) {
     commands.push(command.data.toJSON());
   }
