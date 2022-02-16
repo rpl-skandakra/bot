@@ -78,8 +78,7 @@ client.on('messageCreate', (message) => {
   }
 });
 
-client.on('interactionCreate', async (interaction) => {
-  console.log(interaction);
+client.on('interactionCreate', (interaction) => {
   if (!interaction.isCommand()) return;
   const text = interaction.commandName;
   const command = client.commands.get(text);

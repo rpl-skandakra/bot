@@ -5,6 +5,6 @@ module.exports = {
   description: 'Replies with Pong!',
   data: new SlashCommandBuilder().setName('ping').setDescription('Replies with Pong!'),
   execute: (message, client) => {
-    message.channel.send(`<@${message.author.id}>, 🏓 **Pong!** \`${client.ws.ping}ms\`.`);
+    message.reply(`🏓 **Pong!** \`${client.ws.ping}ms\`.`);
   },
 };
