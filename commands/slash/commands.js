@@ -1,10 +1,11 @@
 const { MessageEmbed } = require('discord.js');
-const { name, prefix } = require('../data/bot.json');
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { name, prefix } = require('../../data/bot.json');
 
 module.exports = {
   name: 'commands',
-  description: 'Show bot command lists',
-  execute: (message) => {
+  data: new SlashCommandBuilder().setName('commands').setDescription('Show bot command lists'),
+  execute: (interaction) => {
     const commandLists = new MessageEmbed()
       .setColor('#34bc6c')
       .setTitle(`${name}'s Command Lists`)
@@ -24,10 +25,10 @@ module.exports = {
         },
       ])
       .setFooter({
-        text: `Command used by: ${message.author.username}#${message.author.discriminator}`,
-        iconURL: message.author.avatarURL(),
+        text: `Command used by: ${interaction.user.tag}`,
+        iconURL: interaction.user.avatarURL(),
       });
 
-    message.channel.send({ embeds: [commandLists] });
+    interaction.reply({ embeds: [commandLists] });
   },
 };
