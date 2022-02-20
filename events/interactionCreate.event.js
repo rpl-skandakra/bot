@@ -5,7 +5,6 @@ module.exports = {
 
     const { commandName, client } = interaction;
     const command = client.commands.get(commandName);
-    console.log(command);
     if (command) {
       command.execute(interaction);
     }
