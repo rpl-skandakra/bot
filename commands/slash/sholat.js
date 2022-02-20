@@ -1,16 +1,21 @@
 const axios = require('axios');
 const { MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 const { format, formatISO } = require('date-fns');
 const { id } = require('date-fns/locale');
-const { prefix } = require('../../data/bot.json');
 
-const showPraySchedule = (message, text) => {
-  const year = new Date().getFullYear();
-  const month = format(new Date(), 'MM');
-  const currentDate = formatISO(new Date(), { representation: 'date' });
-  const location = text[1].toLowerCase();
+module.exports = {
+  name: 'sholat',
+  data: new SlashCommandBuilder()
+    .setName('sholat')
+    .setDescription('Show schedule of pray based on location')
+    .addStringOption((option) => option.setName('lokasi').setDescription('Location').setRequired(true)),
+  execute: (interaction) => {
+    const year = new Date().getFullYear();
+    const month = format(new Date(), 'MM');
+    const currentDate = formatISO(new Date(), { representation: 'date' });
+    const location = interaction.options.getString('lokasi').toLowerCase();
 
-  if (text[1]) {
     axios
       .get(`https://raw.githubusercontent.com/lakuapik/jadwalsholatorg/master/adzan/${location}/${year}/${month}.json`)
       .then((response) => {
@@ -42,26 +47,22 @@ const showPraySchedule = (message, text) => {
           ])
           .setColor('#4484f1')
           .setFooter({
-            text: `Command used by: ${message.author.tag}`,
-            iconURL: message.author.avatarURL(),
+            text: `Command used by: ${interaction.user.tag}`,
+            iconURL: interaction.user.avatarURL(),
           });
 
-        message.channel.send({ embeds: [praySchedule] });
+        interaction.reply({ embeds: [praySchedule] });
       })
       .catch((error) => {
         console.log('Location:', location);
         console.error(error.response.data);
         if (error.response.status === 404) {
-          message.channel.send(`⚠ Jadwal lokasi **${location}** tidak ditemukan!`);
+          interaction.reply(`⚠ Jadwal lokasi **${location}** tidak ditemukan!`);
         } else {
-          message.channel.send(
+          interaction.reply(
             `⚠ Mohon maaf, terdapat kesalahan pengambilan data\n\`\`\`bash\n${error.response.data}\`\`\``
           );
         }
       });
-  } else {
-    message.reply(`Silahkan masukkan daerah yang ingin dicari. Contoh: \`${prefix}sholat karanganyar\``);
-  }
+  },
 };
-
-module.exports = { showPraySchedule };

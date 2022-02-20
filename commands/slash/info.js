@@ -1,13 +1,12 @@
 const { MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 const { description, name, prefix, repo, version } = require('../../data/bot.json');
 const { BOT_ID } = process.env;
-const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
   name: 'info',
-  description: 'Show bot information',
   data: new SlashCommandBuilder().setName('info').setDescription('Show bot information'),
-  async execute(interaction) {
+  execute: (interaction) => {
     const bot = interaction.guild.members.cache.find((member) => member.id === BOT_ID);
     const infoBot = new MessageEmbed()
       .setColor('#34bc6c')
@@ -26,6 +25,6 @@ module.exports = {
       .setTimestamp()
       .setFooter({ text: `Versi ${version}` });
 
-    interaction.channel.send({ embeds: [infoBot] });
+    interaction.reply({ embeds: [infoBot] });
   },
 };

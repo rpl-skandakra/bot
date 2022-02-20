@@ -6,9 +6,9 @@
   "author": "rplskandakra",
   "license": "MIT",
   "scripts": {
-    "predev": "node deploy-commands",
-    "dev": "nodemon",
-    "prestart": "node deploy-commands",
+    "deploy": "node deploy-commands",
+    "dev": "nodemon --exec \"yarn start\"",
+    "prestart": "yarn deploy",
     "start": "node ."
   },
   "dependencies": {

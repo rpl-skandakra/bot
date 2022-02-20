@@ -1,15 +1,14 @@
+const { MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 const { format } = require('date-fns');
 const { id } = require('date-fns/locale');
-const { MessageEmbed } = require('discord.js');
 const { invite, website } = require('../../data/bot.json');
 const { ROLE_ADMIN_ID } = process.env;
-const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
   name: 'server',
-  description: 'Show information about server',
   data: new SlashCommandBuilder().setName('server').setDescription('Show information about server'),
-  async execute(interaction) {
+  execute: (interaction) => {
     const adminRole = interaction.guild.roles.cache.find((role) => role.id === ROLE_ADMIN_ID);
     const admins = adminRole.members;
     const listAdmin = admins.map((admin) => `▸ ${admin}`);
@@ -31,6 +30,6 @@ module.exports = {
         })}`,
       });
 
-    interaction.channel.send({ embeds: [serverInfo] });
+    interaction.reply({ embeds: [serverInfo] });
   },
 };
