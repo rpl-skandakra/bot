@@ -2,7 +2,7 @@ const { clearMessage } = require('../commands/prefix/clear');
 const { showCommands } = require('../commands/prefix/commands');
 const { showInfo } = require('../commands/prefix/info');
 const { sendIntro } = require('../commands/prefix/intro');
-const { pingBot, pongBot } = require('../commands/prefix/ping');
+const { pingBot } = require('../commands/prefix/ping');
 const { showServerInfo } = require('../commands/prefix/server');
 const { showPraySchedule } = require('../commands/prefix/sholat');
 
@@ -32,9 +32,6 @@ module.exports = {
             break;
           case 'ping':
             pingBot(message, client);
-            break;
-          case 'pong':
-            pongBot(message, client);
             break;
           case 'server':
             showServerInfo(message);
