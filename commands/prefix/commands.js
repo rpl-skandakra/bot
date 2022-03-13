@@ -7,8 +7,7 @@ const showCommands = (message) => {
     .setTitle(`${name}'s Command Lists`)
     .setDescription(`🤖 Daftar commands yang tersedia untuk ${name}`)
     .addFields([
-      { name: 'ping', value: 'Ping bot!', inline: true },
-      { name: 'pong', value: 'Pong bot!', inline: true },
+      { name: 'ping', value: 'Ping bot!' },
       {
         name: 'sholat',
         value: 'Menampilkan jadwal sholat berdasarkan daerah',

@@ -11,17 +11,17 @@ module.exports = {
       .setTitle(`${name}'s Command Lists`)
       .setDescription(`🤖 Daftar commands yang tersedia untuk ${name}`)
       .addFields([
-        { name: 'ping', value: 'Ping bot!', inline: true },
-        { name: 'pong', value: 'Pong bot!', inline: true },
+        { name: 'ping', value: 'Ping bot!' },
         {
           name: 'sholat',
           value: 'Menampilkan jadwal sholat berdasarkan daerah',
         },
         { name: 'server', value: 'Menampilkan informasi server' },
         { name: 'info', value: 'Menampilkan informasi bot' },
+        { name: 'qr', value: 'Mencetak gambar qr' },
         {
           name: 'clear',
-          value: `Menghapus pesan (admin only)!\n__Usage__ : \`${prefix}clear 20\` (akan menghapus 20 pesan)`,
+          value: `Menghapus pesan (admin only)!\n__Usage__ : \`/clear 20\` (akan menghapus 20 pesan)`,
         },
       ])
       .setFooter({
