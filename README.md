@@ -11,12 +11,17 @@ Bot for help moderation in RPL Skandakra Discord Server.
 Node.js `>=16.6.0` is required for discord.js v13.
 
 - Add role after member introduce
-- Clear messages
-- Send bot information
 - Send good bye message
-- Send pray schedule based on location
-- Send server information
 - Send welcome message
+
+Available [commands](commands/slash):
+
+- [x] clear
+- [x] info
+- [x] ping
+- [x] qr
+- [x] server
+- [x] sholat
 
 ## License
 
