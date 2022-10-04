@@ -20,6 +20,6 @@ jobs:
           script: |
             cd ${{ secrets.APP_DIR_PATH }}
             git pull origin main
-            export PATH=$PATH:~/.fnm/node-versions/v16.14.0/installation/bin
+            export PATH=$PATH:~/.fnm/node-versions/v16.17.1/installation/bin
             yarn
             pm2 restart ecosystem.config.js
