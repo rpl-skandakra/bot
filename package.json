@@ -5,10 +5,14 @@
   "main": "index.js",
   "author": "rplskandakra",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.x",
+    "pnpm": ">=9.x"
+  },
   "scripts": {
     "deploy": "node deploy-commands",
-    "dev": "nodemon --exec \"yarn start\"",
-    "prestart": "yarn deploy",
+    "dev": "nodemon --exec \"pnpm run start\"",
+    "prestart": "pnpm run deploy",
     "start": "node ."
   },
   "dependencies": {
