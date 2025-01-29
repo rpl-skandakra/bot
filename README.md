@@ -8,7 +8,7 @@ Bot for help moderation in RPL Skandakra Discord Server.
 
 ## Features
 
-Node.js `>=16.6.0` is required for discord.js v13.
+Node.js `>=22.x` is required for discord.js v13.
 
 - Add role after member introduce
 - Send good bye message

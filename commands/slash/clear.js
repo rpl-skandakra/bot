@@ -12,16 +12,15 @@ module.exports = {
   execute: (interaction) => {
     const isAdmin = interaction.member.roles.cache.find((role) => role.id === ROLE_ADMIN_ID);
     const adminName = interaction.guild.roles.cache.find((role) => role.id === ROLE_ADMIN_ID);
-    const numberOfMessage = interaction.options.getInteger('number');
-
-    if (isAdmin) {
-      interaction.channel.bulkDelete(numberOfMessage);
-      interaction.reply(`Berhasil menghapus ${numberOfMessage} pesan 🔥`);
-      setTimeout(() => {
-        interaction.channel.bulkDelete(1);
-      }, 3000);
-    } else {
-      interaction.reply(`Mohon maaf kamu bukan ${adminName} di server ini.`);
+    if (!isAdmin) {
+      return interaction.reply(`Mohon maaf kamu bukan ${adminName} di server ini.`);
     }
+
+    const numberOfMessage = interaction.options.getInteger('number');
+    interaction.channel.bulkDelete(numberOfMessage);
+    interaction.reply(`Berhasil menghapus ${numberOfMessage} pesan 🔥`);
+    setTimeout(() => {
+      interaction.channel.bulkDelete(1);
+    }, 3000);
   },
 };
