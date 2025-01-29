@@ -6,13 +6,13 @@ on:
     branches:
       - main # Trigger the workflow on push to the main branch
 
-env:
-  APP_NAME: rpl-skandakra-bot
-  CONTAINER_NAME: rpl-skandakra-bot-container
-
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+
+    env:
+      APP_NAME: rpl-skandakra-bot
+      CONTAINER_NAME: rpl-skandakra-bot-container
 
     steps:
       - name: Checkout code
@@ -37,14 +37,14 @@ jobs:
           echo "ROLE_MEMBER_ID=${{ secrets.ROLE_MEMBER_ID }}" > .env
 
       - name: Build the Docker image
-        run: docker build -t $APP_NAME .
+        run: docker build -t ${{ env.APP_NAME }} .
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
       - name: Push Docker image
-        run: docker tag $APP_NAME ${{ secrets.DOCKER_HUB_USERNAME }}/$APP_NAME:latest
-      - run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/$APP_NAME:latest
+        run: docker tag ${{ env.APP_NAME }} ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.APP_NAME }}:latest
+      - run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.APP_NAME }}:latest
 
       - name: Set up SSH agent for deployment
         uses: webfactory/ssh-agent@v0.9.0
@@ -55,12 +55,12 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
             # Pull the latest Docker image
-            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/$APP_NAME:latest
+            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.APP_NAME }}:latest
 
             # Stop and remove existing container if it's running
-            docker stop $CONTAINER_NAME || true
-            docker rm $CONTAINER_NAME || true
+            docker stop ${{ env.CONTAINER_NAME }} || true
+            docker rm ${{ env.CONTAINER_NAME }} || true
 
             # Run the new container
-            docker run -d --name $CONTAINER_NAME --memory="128m" ${{ secrets.DOCKER_HUB_USERNAME }}/$APP_NAME:latest
+            docker run -d --name ${{ env.CONTAINER_NAME }} --memory="128m" ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.APP_NAME }}:latest
           EOF
