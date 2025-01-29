@@ -4,7 +4,7 @@ module.exports = {
     console.log(`Logged in as: ${client.user.tag}`);
     console.log('Bot is ready!');
 
-    const peoples = ['Masyarakat', 'RPL Skandakra Dev', 'Discord Server'];
+    const peoples = ['Warga Sipil', 'RPL Skandakra Dev', 'Discord Server'];
     let i = 0;
     setInterval(() => {
       client.user.setActivity(peoples[i++ % peoples.length], {
