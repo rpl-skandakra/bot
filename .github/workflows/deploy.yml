@@ -23,16 +23,16 @@ jobs:
           echo "# Bot credentials" > .env
           echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }}" >> .env
           echo "BOT_ID=${{ secrets.BOT_ID }}" >> .env
-          echo "\n# Server id" >> .env
+          echo -e "\n# Server id" >> .env
           echo "SERVER_ID=${{ secrets.SERVER_ID }}" >> .env
-          echo "\n# List channels" >> .env
+          echo -e "\n# List channels" >> .env
           echo "CH_INTRO_ID=${{ secrets.CH_INTRO_ID }}" >> .env
           echo "CH_LEAVE_ID=${{ secrets.CH_LEAVE_ID }}" >> .env
           echo "CH_LOBBY_ID=${{ secrets.CH_LOBBY_ID }}" >> .env
           echo "CH_LOG_ID=${{ secrets.CH_LOG_ID }}" >> .env
           echo "CH_ROLE_ID=${{ secrets.CH_ROLE_ID }}" >> .env
           echo "CH_RULES_ID=${{ secrets.CH_RULES_ID }}" >> .env
-          echo "\n# List roles" >> .env
+          echo -e "\n# List roles" >> .env
           echo "ROLE_ADMIN_ID=${{ secrets.ROLE_ADMIN_ID }}" >> .env
           echo "ROLE_MEMBER_ID=${{ secrets.ROLE_MEMBER_ID }}" >> .env
 
