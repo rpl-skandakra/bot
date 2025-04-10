@@ -62,8 +62,5 @@ jobs:
             docker rm ${{ env.CONTAINER_NAME }} || true
 
             # Run the new container
-            docker run -d --name ${{ env.CONTAINER_NAME }} --memory="128m" ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.APP_NAME }}:latest
-
-            # Check Docker container logs
-            docker logs ${{ env.CONTAINER_NAME }}
+            docker run -d --restart always --name ${{ env.CONTAINER_NAME }} --memory="128m" ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.APP_NAME }}:latest
           EOF
