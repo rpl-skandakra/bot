@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rpl-skandakra-bot:latest
+    container_name: rpl-skandakra-bot-container
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 128m
