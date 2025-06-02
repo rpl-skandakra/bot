@@ -5,8 +5,4 @@ services:
       dockerfile: Dockerfile
     image: rpl-skandakra-bot:latest
     container_name: rpl-skandakra-bot
-    restart: always
-    deploy:
-      resources:
-        limits:
-          memory: 128m
+    restart: unless-stopped
