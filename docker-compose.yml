@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: rpl-skandakra-bot:latest
-    container_name: rpl-skandakra-bot-container
+    container_name: rpl-skandakra-bot
     restart: always
     deploy:
       resources:

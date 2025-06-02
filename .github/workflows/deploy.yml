@@ -12,7 +12,6 @@ jobs:
 
     env:
       APP_NAME: rpl-skandakra-bot
-      CONTAINER_NAME: rpl-skandakra-bot-container
 
     steps:
       - name: Checkout code
