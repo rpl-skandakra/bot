@@ -4,5 +4,5 @@ services:
       context: .
       dockerfile: Dockerfile
     image: rpl-skandakra-bot:latest
-    container_name: rpl_skandakra_bot
+    container_name: rpl-skandakra-bot
     restart: unless-stopped
