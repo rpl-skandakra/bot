@@ -1,5 +1,7 @@
+const { ActivityType } = require('discord.js');
+
 module.exports = {
-  name: 'ready',
+  name: 'clientReady',
   execute: (client) => {
     console.log(`Logged in as: ${client.user.tag}`);
     console.log('Bot is ready!');
@@ -8,7 +10,7 @@ module.exports = {
     let i = 0;
     setInterval(() => {
       client.user.setActivity(peoples[i++ % peoples.length], {
-        type: 'LISTENING',
+        type: ActivityType.Listening,
       });
     }, 15000);
   },

@@ -1,8 +1,8 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { name, prefix } = require('../../data/bot.json');
 
 const showCommands = (message) => {
-  const commandLists = new MessageEmbed()
+  const commandLists = new EmbedBuilder()
     .setColor('#34bc6c')
     .setTitle(`${name}'s Command Lists`)
     .setDescription(`🤖 Daftar commands yang tersedia untuk ${name}`)

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { format, formatISO } = require('date-fns');
 const { id } = require('date-fns/locale');
@@ -25,7 +25,7 @@ module.exports = {
         const { shubuh, terbit, dzuhur, ashr, magrib, isya } = schedule;
 
         const lokasi = `${location.charAt(0).toUpperCase()}${location.slice(1)}`;
-        const praySchedule = new MessageEmbed()
+        const praySchedule = new EmbedBuilder()
           .setTitle(`Jadwal Sholat Daerah ${lokasi} ⏲`)
           .addFields([
             {

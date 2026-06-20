@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { format } = require('date-fns');
 const { id } = require('date-fns/locale');
@@ -13,7 +13,7 @@ module.exports = {
     const admins = adminRole.members;
     const listAdmin = admins.map((admin) => `▸ ${admin}`);
 
-    const serverInfo = new MessageEmbed()
+    const serverInfo = new EmbedBuilder()
       .setColor('#4484f1')
       .setTitle(`${interaction.guild.name} Discord Server 🛡`)
       .setThumbnail(interaction.guild.iconURL())

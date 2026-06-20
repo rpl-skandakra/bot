@@ -16,16 +16,16 @@
     "start": "node ."
   },
   "dependencies": {
-    "@discordjs/builders": "^1.10.0",
-    "@discordjs/rest": "^2.4.2",
-    "axios": "^1.7.9",
-    "date-fns": "^4.1.0",
-    "discord-api-types": "^0.37.118",
-    "discord.js": "^13.17.1",
-    "dotenv": "^16.0.0",
+    "@discordjs/builders": "^1.14.1",
+    "@discordjs/rest": "^2.6.1",
+    "axios": "^1.18.0",
+    "date-fns": "^4.4.0",
+    "discord-api-types": "^0.38.49",
+    "discord.js": "^14.26.4",
+    "dotenv": "^17.4.2",
     "qrcode": "^1.5.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.14"
   }
 }

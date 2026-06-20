@@ -1,10 +1,10 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { description, name, prefix, repo, version } = require('../../data/bot.json');
 const { BOT_ID } = process.env;
 
 const showInfo = (message) => {
   const bot = message.guild.members.cache.find((member) => member.id === BOT_ID);
-  const infoBot = new MessageEmbed()
+  const infoBot = new EmbedBuilder()
     .setColor('#34bc6c')
     .setTitle(`${name}'s Information`)
     .setThumbnail(bot.user.avatarURL())

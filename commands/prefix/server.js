@@ -1,6 +1,6 @@
 const { format } = require('date-fns');
 const { id } = require('date-fns/locale');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { invite, website } = require('../../data/bot.json');
 const { ROLE_ADMIN_ID } = process.env;
 
@@ -9,7 +9,7 @@ const showServerInfo = (message) => {
   const admins = adminRole.members;
   const listAdmin = admins.map((admin) => `▸ ${admin}`);
 
-  const serverInfo = new MessageEmbed()
+  const serverInfo = new EmbedBuilder()
     .setColor('#4484f1')
     .setTitle(`${message.guild.name} Discord Server 🛡`)
     .setThumbnail(message.guild.iconURL())

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const QRCode = require('qrcode');
-const { MessageAttachment, MessageEmbed } = require('discord.js');
+const { AttachmentBuilder, EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -37,8 +37,8 @@ module.exports = {
       function (err) {
         if (err) throw err;
 
-        const attachment = new MessageAttachment(fileUrl);
-        const qrImage = new MessageEmbed()
+        const attachment = new AttachmentBuilder(fileUrl);
+        const qrImage = new EmbedBuilder()
           .setColor('#4484f1')
           .setTitle(`QR Code Generated!`)
           .setImage('attachment://qrImage.png')

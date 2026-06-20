@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { name, prefix } = require('../../data/bot.json');
 
@@ -6,7 +6,7 @@ module.exports = {
   name: 'commands',
   data: new SlashCommandBuilder().setName('commands').setDescription('Show bot command lists'),
   execute: (interaction) => {
-    const commandLists = new MessageEmbed()
+    const commandLists = new EmbedBuilder()
       .setColor('#34bc6c')
       .setTitle(`${name}'s Command Lists`)
       .setDescription(`🤖 Daftar commands yang tersedia untuk ${name}`)
