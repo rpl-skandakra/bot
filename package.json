@@ -27,5 +27,11 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/node": "22.10.2",
+      "semver": "7.7.1"
+    }
   }
 }
